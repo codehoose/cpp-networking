@@ -8,7 +8,10 @@ Basic C++ barebones TCP server. You can use the client or PuTTY to connect to th
 Basic C++ barebones TCP client. Compiles using Visual C++. 
 
 ## Multiple Clients Barebones Server
-Basic C++ barebones multiple clients server. Doesn't use threading! Compiles using Visual C++.
+Basic C++ barebones multiple TCP clients server. Doesn't use threading! Compiles using Visual C++.
+
+## Multiple Clients Barebones Server UDP
+Basic C++ barebones multiple UDP clients server. Doesn't use threading! Compiles using Visual C++.
 
 ## QOTD Server
 Quote of the day server written in C++. Uses UDP. Compiles using Visual C++.
