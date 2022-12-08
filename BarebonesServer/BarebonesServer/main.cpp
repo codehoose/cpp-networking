@@ -6,6 +6,8 @@
 
 using namespace std;
 
+void ShowLastError();
+
 void main()
 {
 	// Initialze winsock
@@ -33,7 +35,11 @@ void main()
 	hint.sin_port = htons(54000);
 	hint.sin_addr.S_un.S_addr = INADDR_ANY; // Could also use inet_pton .... 
 	
-	bind(listening, (sockaddr*)&hint, sizeof(hint));
+	if (bind(listening, (sockaddr*)&hint, sizeof(hint)) == SOCKET_ERROR)
+	{
+		ShowLastError();
+		return;
+	}
 
 	// Tell Winsock the socket is for listening 
 	listen(listening, SOMAXCONN);
@@ -99,4 +105,18 @@ void main()
 	WSACleanup();
 
 	system("pause");
+}
+
+void ShowLastError()
+{
+	wchar_t* s = NULL;
+	FormatMessageW(FORMAT_MESSAGE_ALLOCATE_BUFFER |
+		FORMAT_MESSAGE_FROM_SYSTEM |
+		FORMAT_MESSAGE_IGNORE_INSERTS,
+		NULL,
+		WSAGetLastError(),
+		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+		(LPWSTR)&s, 0, NULL);
+	fprintf(stderr, "%S\n", s);
+	LocalFree(s);
 }
