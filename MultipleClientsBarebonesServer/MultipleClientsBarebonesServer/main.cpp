@@ -162,5 +162,6 @@ void main()
 	// Cleanup winsock
 	WSACleanup();
 
-	system("pause");
+	cout << "Press Enter to Exit.";
+	cin.get();
 }
